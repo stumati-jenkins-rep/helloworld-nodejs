@@ -1,5 +1,10 @@
 pipeline {
-  agent { label 'nodejs-app' }
+  agent {
+        kubernetes {
+          label 'nodejs-app-pod'
+          yamlFile 'nodejs-pod.yaml'
+        }
+      }
   stages {
     stage('Test') {
       steps {
