@@ -3,8 +3,21 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-          echo 'Hello World!'   
+        sh 'java -version'
+        container('nodejs') {
+          echo 'Hello!'   
           sh 'node --version'
+        }
+      }
+    }
+    stage('Build and Push Image') {
+      when {
+         beforeAgent true
+         branch 'master'
+      }
+      steps {
+         echo "TODO - build and push image"
       }
     }
   }
+}
